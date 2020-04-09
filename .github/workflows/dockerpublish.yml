@@ -16,7 +16,7 @@ jobs:
       - name: Run up environment
         run: docker-compose -f docker-compose.yml -f docker-compose-test.yml up -d db backend frontend
       - name: Robot Framework
-        run: docker-compose -f docker-compose.yml -f docker-compose-test.yml up tests
+        run: docker-compose -f docker-compose.yml -f docker-compose-test.yml up --exit-code-from tests tests
       - uses: actions/upload-artifact@v1
         with:
             name: test results
