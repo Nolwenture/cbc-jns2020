@@ -13,6 +13,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Run up environment
+        run: docker-compose -f docker-compose.yml -f docker-compose-test.yml up -d db backend frontend
+      - name: Ping frontend
+        run: ping -c1 http://frontend
       - name: Robot Framework
         run: docker-compose -f docker-compose.yml -f docker-compose-test.yml up tests
       - uses: actions/upload-artifact@v1
